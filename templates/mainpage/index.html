@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- 写入 base.html 中定义的 title -->
+{% block title %}
+    HPC小站首页
+{% endblock title %}
+
+<!-- 写入 base.html 中定义的 content -->
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/main3.css' %}">
+<body background="{% static 'png/bg1.jpg' %}"
+      style="background-repeat:no-repeat;
+      background-size:100% 100%;
+      background-attachment: fixed;">   
+
+</body>
+
+<!--</div>-->
+<div style="width:1800px;height:1500px;margin: 0 auto;text-align:center; background-color:rgba(255, 255, 255, 0.85);">
+<br><br><br>
+<div class="first_container">
+    <div class="con_center">
+        <div class="item lm_item_pt20">
+            <a href="{% url 'ticket:ticket_list'%}" >
+             <img src="{% static 'png/a.png' %}"> </a>
+        </div>
+    </div>
+    <div class="con_center">
+        <div class="item" >
+            <a href="{% url 'tutorial:tutorial_detail' 1%}" >
+             <img src="{% static 'png/b.png' %}"> </a>
+        </div>
+    </div>
+    <div class="con_center">
+        <div class="item">
+            <a href="http://www.nsccsz.cn/" >
+             <img src="{% static 'png/c.png' %}"> </a>
+        </div>
+    </div>
+</div>
+
+<div class="second_container">
+<div class="menu_banner">
+    <ul class="nav" style="list-style-type:none;table-layout:fixed;">
+        <li class="nav">
+            <h4><span>&nbsp&nbsp&nbsp&nbsp新手入门&nbsp&nbsp&nbsp&nbsp</span></h4>
+        </li>
+        <li class="nav">
+            <h4><span>&nbsp&nbsp&nbsp&nbsp平台架构&nbsp&nbsp&nbsp&nbsp</span></h4>
+        </li>
+        <li class="nav">
+            <h4><span>&nbsp&nbsp&nbsp&nbsp任务管理&nbsp&nbsp&nbsp&nbsp</span></h4>
+        </li>
+        <li class="nav">
+            <h4><span>&nbsp&nbsp&nbsp&nbsp软件环境&nbsp&nbsp&nbsp&nbsp</span></h4>
+        </li>
+        <li class="nav">
+            <h4><span>&nbsp&nbsp&nbsp&nbsp系统公告&nbsp&nbsp&nbsp&nbsp</span></h4>
+        </li>
+    </ul>
+
+
+
+<div class="small_block">
+      <ul class="con_list" style="list-style-type:none;">
+            <li>
+                <a href="https://www.baidu.com/" target="_blank">平台总览</a>
+            </li>
+            <li>
+                <a href="http://www.baidu.com" target="_blank">登录系统</a>
+
+            </li>
+            <li>
+                <a href="http://www.baidu.com" target="_blank">常用linux命令</a>
+            </li>
+            <li>
+                <a href="http://www.baidu.com" target="_blank">软件使用</a>
+            </li>
+          <li>
+                <a href="http://www.baidu.com" target="_blank">文件管理</a>
+            </li>
+        </ul>
+    </div>
+<div class="small_block">
+      <ul class="con_list" style="list-style-type:none;">
+            <li>
+                <a href="https://www.baidu.com/" target="_blank">登录节点</a>
+            </li>
+            <li>
+                <a href="http://www.baidu.com" target="_blank">编译节点</a>
+
+            </li>
+            <li>
+                <a href="http://www.baidu.com" target="_blank">计算节点</a>
+            </li>
+            <li>
+                <a href="http://www.baidu.com" target="_blank">文件传输节点</a>
+            </li>
+          <li>
+                <a href="http://www.baidu.com" target="_blank">存储系统</a>
+            </li>
+        </ul>
+    </div>
+<div class="small_block">
+      <ul class="con_list" style="list-style-type:none">
+            <li>
+                <a href="https://www.baidu.com/" target="_blank">脚本编写</a>
+            </li>
+            <li>
+                <a href="http://www.baidu.com" target="_blank">作业提交</a>
+
+            </li>
+            <li>
+                <a href="http://www.baidu.com" target="_blank">作业状态查看</a>
+            </li>
+            <li>
+                <a href="http://www.baidu.com" target="_blank">作业取消</a>
+            </li>
+        </ul>
+        </div>
+<div class="small_block">
+      <ul class="con_list" style="list-style-type:none">
+            <li>
+                <a href="https://www.baidu.com/" target="_blank">应用软件</a>
+            </li>
+            <li>
+                <a href="http://www.baidu.com" target="_blank">编译器</a>
+
+            </li>
+            <li>
+                <a href="http://www.baidu.com" target="_blank">数学库</a>
+            </li>
+            <li>
+                <a href="http://www.baidu.com" target="_blank">图像库</a>
+            </li>
+          <li>
+                    <a href="http://www.baidu.com" target="_blank">I/O库</a>
+            </li>
+            <li>
+                    <a href="http://www.baidu.com" target="_blank">性能分析工具</a>
+            </li>
+            <li>
+                    <a href="http://www.baidu.com" target="_blank">其他</a>
+            </li>
+        </ul>
+            </div>
+<div class="small_block">
+    {% if user.profile.is_engineer %}
+        <a class="block_more" href="{% url 'document:document_list' %}">技术支持库</a>
+        <h4>Leetcode-每日一题
+        <h4>{{ no }}:{{ leetcodeTitle }}——{{ level }}
+        <p><a class="block_more" href="{{ url_ }}">{{ url_ }}</a>
+    {% else %}        
+      <ul class="con_list" style="list-style-type:none">
+            <li>
+                <a href="https://www.baidu.com/" target="_blank">公告1</a>
+            </li>
+            <li>
+                <a href="http://www.baidu.com" target="_blank">公告2</a>
+
+            </li>
+            <li>
+                <a href="http://www.baidu.com" target="_blank">公告3</a>
+            </li>
+      </ul>
+    {% endif %}
+    </div>
+</div>
+</div>
+
+
+<div class="go-top">
+    <img src="{%static 'png/gzh.jpg' %}" alt="关注深圳超算" width="100%" >
+    <p style="color:#ccc;text-indent:-0.2em">扫一扫 关注公众号</p>
+
+</div>
+
+
+
+{% endblock content %}

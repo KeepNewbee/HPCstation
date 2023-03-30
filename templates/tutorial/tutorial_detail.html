@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- 写入 base.html 中定义的 title -->
+{% block title %}
+    文档详情
+{% endblock title %}
+
+<!-- 写入 base.html 中定义的 content -->
+{% block content %}
+
+<!-- 文章详情 -->
+<div class="container">
+    <div class="row">
+        <div class="col-3 mt-4">
+ 
+            <div class="widget widget-all-posts">
+                <h3 class="widget-title">教程目录</h3>
+                <ul>
+                  {% for post in tutorial_list %}
+                    <li>
+                      <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                    </li>
+                  {% empty %}
+                    暂无文章！
+                  {% endfor %}
+                </ul>
+             </div>
+
+        </div>
+        <div class="col-9">
+            <!-- 标题及作者 -->
+            <h1 class="col-12 mt-4 mb-4">{{ tutorial.title }}</h1>
+            <div class="col-12 alert alert-success">作者：{{ tutorial.author }} 文档类型：{{tutorial.doc_type}}</div>
+
+            <!-- 文章正文 -->
+            <div class="col-12">
+                <p>{{ tutorial.body | safe }}</p>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+{% endblock content %}

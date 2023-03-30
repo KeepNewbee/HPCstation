@@ -1,0 +1,95 @@
+{% extends "base.html" %} {% load static %}
+{% block title %} 用户信息 {% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="panel panel-default" id="body-content">
+        <div class="panel-body">
+            <div style="background-color: #1c2b36;height: 29vh">
+                <div class="wrapper-lg">
+                    <div style="text-align: center;">
+                        <a>
+                            {% if profile.avatar %}
+                                <img src="{{ user.profile.avatar.url }}" class="img-circle" style="border-radius: 50%; width: 256px; height: 256px;">
+                            {% else %}
+                                <img src="{%static 'png/logo.png' %}" class="img-circle" style="border-radius: 50%; width: 216px; height: 216px;">
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height: 56vh">
+        <div class="wrapper-lg" style="padding-left: 0; padding-right: 0;padding-top: 0;">
+            <div class="row" style="text-align: center;">
+                <div class="col-sm-8" style="padding-top: 15px;">
+
+                    <table class="table table-bordered" style="font-size: 14px;color: #000">
+                        <tbody>
+                        <tr style="background-color: #1c2b36;font-size: 16px; font-weight: bolder;color: white;">
+                            <td colspan="4">基本信息</td>
+                        </tr>
+                        <tr class="gradeX odd" role="row">
+                            <td class="text-right" style="width: 20%; font-weight: bolder;">姓名</td>
+                            <td style="width: 30%">
+                                {{ user.profile.real_name }}</td>
+                            <td class="text-right" style="width: 20%; font-weight: bolder;">用户名</td>
+                            <td style="width: 30%">{{ user.username }}
+                            </td>
+                        </tr>
+                        <tr class="gradeX odd" role="row">
+                            <td class="text-right" style="width: 20%; font-weight: bolder;">部门</td>
+                            <td style="width: 30%">{{ user.profile.department }}</td>
+                            <td class="text-right" style="width: 20%; font-weight: bolder;">职位</td>
+                            <td style="width: 30%">{{ user.profile.position }}</td>
+                        </tr>
+                        <tr class="gradeX odd" role="row">
+                            <td class="text-right" style="width: 20%; font-weight: bolder;">学校</td>
+                            <td style="width: 30%">{{ user.profile.college }}</td>
+                            <td class="text-right" style="width: 20%; font-weight: bolder;"></td>
+                            <td style="width: 30%"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                    <table class="table table-bordered" style="font-size: 14px;color: #000">
+                        <tbody>
+                        <tr style="background-color: #1c2b36;font-size: 16px; font-weight: bolder;color: white;">
+                            <td colspan="4">统计</td>
+                        </tr>
+                        <tr class="gradeX odd" role="row">
+                            <td class="text-right" style="width: 20%; font-weight: bolder;">发贴数</td>
+                            <td style="width: 30%">
+                                {{ num_of_tickets }}</td>
+                            <td class="text-right" style="width: 20%; font-weight: bolder;">评论数</td>
+                            <td style="width: 30%">
+                                {{ num_of_comments }}</td>
+                        </tr>
+                       
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-sm-4" style="padding-top: 15px;padding-left: 0;">
+
+                    <table class="table table-bordered" style="font-size: 14px;color: #000">
+                        <tbody>
+                        <tr style="background-color: #1c2b36;font-size: 16px; font-weight: bolder;color: white;">
+                            <td>其他说明</td>
+                        </tr>
+                        <tr class="gradeX odd" style="height: 40vh;" role="row">
+                            <td class="text-left">
+                                <p>{{ profile.bio | safe}}</p></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <a class="col-3 btn btn-primary bg-dark" style="color: white;margin-right: 100px;" href='{% url "userprofile:edit" user.id %}'>编辑资料</a>
+                <a class="col-3 btn btn-primary bg-dark" style="color: white;margin-left: 100px;" href='{% url "userprofile:logout"%}'>登出账号</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

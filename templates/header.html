@@ -1,0 +1,35 @@
+<!-- 定义导航栏 -->
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      
+      <!-- 导航栏商标 -->
+        <a class="navbar-brand" href="{% url 'mainpage:index' %}">
+            <img src="{%static 'png/logo.png' %}" alt="logo" class="d-inline-block align-text-center  me-2" width="50" height="50">
+            国家超级计算深圳中心——HPC小站</a>
+        <div>
+            <ul class="navbar-nav">
+              <!-- 条目 -->
+                {% if user.is_authenticated %} 
+                
+                <!-- <li class="nav-item">
+                    <a class="nav-link " href="{% url 'userprofile:logout' %}">登出</a>
+                </li> -->
+                    {% if user.profile.avatar %}
+                        <li class="nav-item ml-md-auto">
+                            <a class="nav-link d-block" href="{% url 'userprofile:display' user.id %}" style="width: 80px;height: 80px;"><img src="{{ user.profile.avatar.url }}" alt="暂无头像" style="max-width: 100%; border-radius: 50%;" class="d-inline-block align-text-center"></a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item ml-md-auto">
+                            <a class="nav-link d-block" href="{% url 'userprofile:display' user.id %}" style="width: 80px;height: 80px;">{{ user.username }}</a>
+                        </li>
+                    {% endif %}
+
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'userprofile:login' %}">登录</a>
+                </li>  
+                {% endif %}
+            </ul>     
+    </div>
+</nav> 

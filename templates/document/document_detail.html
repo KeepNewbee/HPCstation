@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!-- 写入 base.html 中定义的 title -->
+{% block title %}
+    文档详情
+{% endblock title %}
+
+<!-- 写入 base.html 中定义的 content -->
+{% block content %}
+
+<!-- 文章详情 -->
+<div class="container">
+    <div class="row">
+        <div class="col-3 mt-4">
+            <h4><strong>目录</strong></h4>
+            <hr>
+            <div>
+                {{ toc|safe }}
+            </div>
+        </div>
+        <div class="col-9">
+            <!-- 标题及作者 -->
+            <h1 class="col-12 mt-4 mb-4">{{ document.title }}</h1>
+            <div class="col-12 alert alert-success">作者：{{ document.author }} 文档类型：{{document.doc_type}}</div>
+
+            <!-- 文章正文 -->
+            <div class="col-12">
+                <p>{{ document.body | safe }}</p>
+            </div>
+            {% if user == document.author %}
+                <a class="col-4 btn btn-primary" href="#" onclick="confirm_delete()">删除文档</a>
+                <a class="col-4 btn btn-primary" href='{% url "document:document_update" document.id %}'>编辑文档</a>
+            {% endif %}
+        </div>
+        
+    </div>
+</div>
+<script>
+    // 删除文章的函数
+    function confirm_delete() {
+        // 调用layer弹窗组件
+        layer.open({
+            // 弹窗标题
+            title: "确认删除",
+            // 正文
+            content: "确认删除这篇文章吗？",
+            // 点击确定按钮后调用的回调函数
+            yes: function(index, layero) {
+                // 指定应当前往的 url
+                location.href='{% url "document:document_delete" document.id %}'
+            },
+        })
+    }
+</script>
+{% endblock content %}
